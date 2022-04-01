@@ -17,17 +17,17 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
-  spring-boot-2.5:
+  spring-boot-admin-2.5:
     image: "stekoe/spring-boot-admin:2.5.5"
     restart: "always"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.sba-2-6.rule=PathPrefix(`/sba/2.5`)"
-      - "traefik.http.routers.sba-2-6.entrypoints=web"
+      - "traefik.http.routers.sba-2-5.rule=PathPrefix(`/sba/2.5`)"
+      - "traefik.http.routers.sba-2-5.entrypoints=web"
     environment:
-      - server.servlet.context-path=/app/2.6
+      - server.servlet.context-path=/sba/2.5
 
-  spring-boot-2.6:
+  spring-boot-admin-2.6:
     image: "stekoe/spring-boot-admin:2.6.4"
     restart: "always"
     labels:
@@ -35,4 +35,5 @@ services:
       - "traefik.http.routers.sba-2-6.rule=PathPrefix(`/sba/2.6`)"
       - "traefik.http.routers.sba-2-6.entrypoints=web"
     environment:
-      - server.servlet.context-path=/app/2.6
+      - server.servlet.context-path=/sba/2.6
+
