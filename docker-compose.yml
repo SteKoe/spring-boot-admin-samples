@@ -1,0 +1,38 @@
+version: "3.3"
+
+services:
+  traefik:
+    image: "traefik:v2.6"
+    container_name: "traefik"
+    restart: "always"
+    command:
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=true"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+  spring-boot-2.5:
+    image: "stekoe/spring-boot-admin:2.5.5"
+    restart: "always"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sba-2-6.rule=PathPrefix(`/sba/2.5`)"
+      - "traefik.http.routers.sba-2-6.entrypoints=web"
+    environment:
+      - server.servlet.context-path=/app/2.6
+
+  spring-boot-2.6:
+    image: "stekoe/spring-boot-admin:2.6.4"
+    restart: "always"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sba-2-6.rule=PathPrefix(`/sba/2.6`)"
+      - "traefik.http.routers.sba-2-6.entrypoints=web"
+    environment:
+      - server.servlet.context-path=/app/2.6
