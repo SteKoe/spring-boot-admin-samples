@@ -17,6 +17,18 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
+  spring-boot-admin-2.4:
+    image: "stekoe/spring-boot-admin:2.4.4"
+    restart: "always"
+    ports:
+      - "8888:8080"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sba-2-4.rule=PathPrefix(`/sba/2.4`)"
+      - "traefik.http.routers.sba-2-4.entrypoints=web"
+    environment:
+      - server.servlet.context-path=/sba/2.4
+
   spring-boot-admin-2.5:
     image: "stekoe/spring-boot-admin:2.5.5"
     restart: "always"
