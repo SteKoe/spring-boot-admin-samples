@@ -18,12 +18,12 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <version>2.6.7</version>
+    <version>3.0.0-M1</version>
     <properties>
-        <spring-boot-dependencies.version>2.6.6</spring-boot-dependencies.version>
-        <spring-cloud-dependencies.version>2021.0.2</spring-cloud-dependencies.version>
+        <spring-boot-dependencies.version>3.0.0-M1</spring-boot-dependencies.version>
+        <spring-cloud-dependencies.version>2022.0.0-M2</spring-cloud-dependencies.version>
     </properties>
-    <artifactId>spring-boot-admin-2.6</artifactId>
+    <artifactId>spring-boot-admin-3.0</artifactId>
 
     <parent>
         <groupId>de.codecentric.spring.boot</groupId>
@@ -74,6 +74,27 @@
             <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>${docker.image.name}:${project.version}</name>
+                            <build>
+                                <from>openjdk:17</from>
+                                <assembly>
+                                    <descriptorRef>artifact</descriptorRef>
+                                </assembly>
+                                <volumes>
+                                    <volume>/tmp</volume>
+                                </volumes>
+                                <ports>
+                                    <port>8080</port>
+                                </ports>
+                                <entryPoint>["java","-Djava.security.egd=file:/dev/./urandom","-jar","/maven/${project.name}-${project.version}.jar", "--spring.config.location=optional:file:/application.properties,optional:file:/application.yml,optional:classpath:application.yml"]</entryPoint>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+
             </plugin>
         </plugins>
     </build>

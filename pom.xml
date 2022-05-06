@@ -22,6 +22,7 @@
         <module>spring-boot-admin-2.4</module>
         <module>spring-boot-admin-2.5</module>
         <module>spring-boot-admin-2.6</module>
+        <module>spring-boot-admin-3.0</module>
     </modules>
     <organization>
         <name>codecentric AG</name>
