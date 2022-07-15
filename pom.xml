@@ -51,7 +51,6 @@
                         <images>
                             <image>
                                 <name>${docker.image.name}:${project.version}</name>
-                                <registry>docker.io</registry>
                                 <build>
                                     <from>openjdk:11-jre-slim</from>
                                     <assembly>
