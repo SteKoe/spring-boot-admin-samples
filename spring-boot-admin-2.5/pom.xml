@@ -21,7 +21,7 @@
     <version>2.5.6</version>
     <properties>
         <spring-boot-dependencies.version>2.5.12</spring-boot-dependencies.version>
-        <spring-cloud-dependencies.version>2020.0.5</spring-cloud-dependencies.version>
+        <spring-cloud-dependencies.version>2020.0.6</spring-cloud-dependencies.version>
     </properties>
     <artifactId>spring-boot-admin-2.5</artifactId>
 
