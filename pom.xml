@@ -53,16 +53,11 @@
                                 <name>${docker.image.name}:${project.version}</name>
                                 <registry>docker.io</registry>
                                 <build>
+                                    <context>.</context>
                                     <from>openjdk:11-jre-slim</from>
                                     <assembly>
                                         <descriptorRef>artifact</descriptorRef>
                                     </assembly>
-                                    <buildx>
-                                        <platforms>
-                                            <platform>linux/amd64</platform>
-                                            <platform>linux/arm64</platform>
-                                        </platforms>
-                                    </buildx>
                                     <volumes>
                                         <volume>/tmp</volume>
                                     </volumes>
