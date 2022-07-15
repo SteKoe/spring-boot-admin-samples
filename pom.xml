@@ -11,7 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <docker.image.name>codecentric/spring-boot-admin</docker.image.name>
+        <docker.image.name>docker.io/codecentric/spring-boot-admin</docker.image.name>
         <docker-maven-plugin.version>0.40.1</docker-maven-plugin.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
