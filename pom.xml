@@ -6,17 +6,15 @@
 
     <groupId>de.codecentric.spring.boot</groupId>
     <artifactId>spring-boot-admin-samples</artifactId>
-    <version>${revision}</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
-        <revision>1.0.0-SNAPSHOT</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <docker.image.name>codecentric/spring-boot-admin</docker.image.name>
+        <docker-maven-plugin.version>0.40.1</docker-maven-plugin.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <docker.image.name>codecentric/spring-boot-admin</docker.image.name>
-        <docker-maven-plugin.version>0.40.0</docker-maven-plugin.version>
-        <spring-boot-maven-plugin.version>${project.version}</spring-boot-maven-plugin.version>
     </properties>
 
     <modules>
@@ -46,21 +44,6 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${spring-boot-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>repackage</goal>
-                            </goals>
-                            <configuration>
-                                <finalName>app</finalName>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
                     <groupId>io.fabric8</groupId>
                     <artifactId>docker-maven-plugin</artifactId>
                     <version>${docker-maven-plugin.version}</version>
@@ -68,11 +51,18 @@
                         <images>
                             <image>
                                 <name>${docker.image.name}:${project.version}</name>
+                                <registry>docker.io</registry>
                                 <build>
                                     <from>openjdk:11-jre-slim</from>
                                     <assembly>
                                         <descriptorRef>artifact</descriptorRef>
                                     </assembly>
+                                    <buildx>
+                                        <platforms>
+                                            <platform>linux/amd64</platform>
+                                            <platform>linux/arm64</platform>
+                                        </platforms>
+                                    </buildx>
                                     <volumes>
                                         <volume>/tmp</volume>
                                     </volumes>
