@@ -41,6 +41,22 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <id>parse-version</id>
+                        <goals>
+                            <goal>parse-version</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -53,6 +69,10 @@
                                 <name>${docker.image.name}:${project.version}</name>
                                 <build>
                                     <from>openjdk:11-jre-slim</from>
+                                    <tags>
+                                        <tag>${project.version}</tag>
+                                        <tag>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}</tag>
+                                    </tags>
                                     <assembly>
                                         <descriptorRef>artifact</descriptorRef>
                                     </assembly>
