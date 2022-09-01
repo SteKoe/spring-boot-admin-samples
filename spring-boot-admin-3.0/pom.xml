@@ -109,7 +109,10 @@
                                 <ports>
                                     <port>8080</port>
                                 </ports>
-                                <entryPoint>["java","-Djava.security.egd=file:/dev/./urandom","-jar","/maven/${project.name}-${project.version}.jar", "--spring.config.location=optional:file:/application.properties,optional:file:/application.yml,optional:classpath:application.yml"]</entryPoint>
+                                <entryPoint>
+                                    ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/maven/${project.name}-${project.version}.jar",
+                                    "--spring.config.location=optional:file:/application.properties,optional:file:/application.yml,optional:classpath:application.yml"]
+                                </entryPoint>
                             </build>
                         </image>
                     </images>
