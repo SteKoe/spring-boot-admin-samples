@@ -5,4 +5,4 @@ main purpose of this repository is to deploy different versions of Spring Boot a
 compatibility with different Spring Boot Admin versions.
 
 To build docker images run `mvn verify`,
-`mvn install` will run `docker dploy` internally.
+`mvn install` will run `docker deploy` internally.
