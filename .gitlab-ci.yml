@@ -1,0 +1,40 @@
+variables:
+  MAVEN_OPTS: >-
+    -Dhttps.protocols=TLSv1.2
+    -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository
+    -Dorg.slf4j.simpleLogger.showDateTime=true
+    -Djava.awt.headless=true
+
+  MAVEN_CLI_OPTS: >-
+    --batch-mode
+    --errors
+    --fail-at-end
+    --show-version
+    --no-transfer-progress
+
+image: maven:3.8-eclipse-temurin-17-alpine
+
+cache:
+  paths:
+    - .m2/repository
+
+stages:
+  - test
+  - deploy
+
+.deploy-app:
+  stage: deploy
+  script:
+    - 'mvn $MAVEN_CLI_OPTS verify'
+  except:
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+test-app:
+  stage: test
+  script:
+    - 'mvn $MAVEN_CLI_OPTS test'
+
+deploy-app:sba-2.4:
+  extends:
+    - .build-apps
