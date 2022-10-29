@@ -37,4 +37,4 @@ test-app:
 
 deploy-app:sba-2.4:
   extends:
-    - .build-apps
+    - .deploy-app
