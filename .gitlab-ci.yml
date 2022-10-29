@@ -12,14 +12,13 @@ variables:
     --show-version
     --no-transfer-progress
 
-image: maven:3.8-eclipse-temurin-17-alpine
+image: docker:20.10.16
+services:
+  - docker:20.10.16-dind
 
 cache:
   paths:
     - .m2/repository
-
-services:
-  - docker:20.10.16-dind
 
 before_script:
   - docker info
