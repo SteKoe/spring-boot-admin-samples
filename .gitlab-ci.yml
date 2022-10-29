@@ -30,11 +30,11 @@ stages:
     variables:
       - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
-test-app:
+test:
   stage: test
   script:
     - 'mvn $MAVEN_CLI_OPTS test'
 
 deploy-app:sba-2.4:
   extends:
-    - .test-app
+    - .deploy-app
