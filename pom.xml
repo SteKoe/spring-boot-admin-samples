@@ -85,12 +85,6 @@
                                     <entryPoint>
                                         ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/maven/${project.name}-${project.version}.jar", "--spring.config.additional-location=optional:file:/application.properties,optional:file:/application.yml"]
                                     </entryPoint>
-                                    <buildx>
-                                        <platforms>
-                                            <platform>linux/amd64</platform>
-                                            <platform>linux/arm64</platform>
-                                        </platforms>
-                                    </buildx>
                                 </build>
                             </image>
                         </images>
