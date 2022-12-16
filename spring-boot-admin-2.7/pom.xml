@@ -20,6 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
     <version>2.7.9</version>
     <properties>
+        <java.version>11</java.version>
         <spring-boot-dependencies.version>2.7.6</spring-boot-dependencies.version>
         <spring-cloud-dependencies.version>2021.0.5</spring-cloud-dependencies.version>
     </properties>
